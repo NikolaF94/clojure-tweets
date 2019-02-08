@@ -9,8 +9,8 @@
 
 
 
-(defn oceni [] (println (sentiment-maps (str (for [x (let [v (gettweets)]
-                                                       (vec (map #(% :text) v)))] x))) ) )
+(defn oceni [] (println (sentiment-maps (str (let [v (gettweets)]
+                                               (vec (map #(% :text) v)))) ) ) )
 
 
 (println (for [x (let [v (gettweets)]
