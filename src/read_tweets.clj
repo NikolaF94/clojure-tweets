@@ -1,23 +1,77 @@
-
 (ns read-tweets
   (:import (me.jhenrique.main Main))
-  (require [damionjunk.nlp.stanford :refer :all]))
-(defn gettweets [] (into [] (for [x (Main/main "realdonaldtrump" "China" "2015-12-20" "2019-01-01" 50)]
+  (:import org.bson.types.ObjectId)
+  (:require [monger.core :as mg]
+            [monger.collection :as mc])
+  (require [damionjunk.nlp.stanford :refer :all])
+  (require [clj-time.core :as t])
+  (require [clj-time.format :as f])
+  (:require [cheshire.core :refer :all])
+  (require [clj-time.coerce :as c])
+  (:import [java.util Calendar Date GregorianCalendar TimeZone]
+           [java.sql Timestamp]
+           (java.time.format DateTimeFormatter)
+           (java.time ZonedDateTime)))
+
+;Loads and returns tweets. Parameters are Twitter Account, Keyword and Start and End Dates, Max number of Tweets
+(defn gettweets [] (into [] (for [x (Main/main "realdonaldtrump" "China" "2015-12-20" "2019-01-01" 5)]
                               (into {} (for [y (bean x)]
-                                         y)) ) ))
+                                         y)))))
 
 
 
 
-(defn oceni [] (println (sentiment-maps (str (let [v (gettweets)]
-                                               (vec (map #(% :text) v)))) ) ) )
+(defn return-sentiment [] (into [] (sentiment-maps (str (let [v (gettweets)]
+                                                          (vec (map #(% :text) v)))))))
+(def sentiments (return-sentiment))
 
 
-(println (for [x (let [v (gettweets)]
-                   (vec (map #(% :text) v)))] x) )
+;(f/show-formatters)
+;(def built-in-formatter (f/formatters :date))
+;(f/parse custom-formatter "06/08/2018")
+;(def custom-formatter (f/formatter "dd/MM/yyyy"))
+;(use '(incanter core stats chart dataset))
+;(def data)                                                         ;;
 
-(str (let [v (gettweets)]
-       (vec (map #(% :text) v))))
+(def tvitovi (gettweets))
+
+
+(def negative-sentiment (filter #(< (:sentiment %) 2) sentiments))
+
+(def positive-sentiment (filter #(> (:sentiment %) 1) sentiments))
+
+(defn get-index []  (let [conn (mg/connect)
+                          db (mg/get-db conn "nasdaq")
+                          oid  (ObjectId.)]
+                      (mc/find-maps db "index" {:date "12/14/2018"} )))
+(def indexes (get-index))
+;(def index-date-complex (apply f/parse custom-formatter (map #(get % :date) indeksi) ) )
+
+(def tweet-date-complex (map #(get % :date) tvitovi))
+;(def joda-complex (map #(c/from-date %) tweet-date-complex))
+
+(def custom-formatter (f/formatter "MM/dd/yyyy"))
+
+(def my-formatter (f/formatter "yyyy-MM-dd "))
+
+(def tweet-date (map #(str %) joda))
+
+(map #(f/parse custom-formatter % ) tweet-date)
+
+(def nudge (= tweet-date index-date))
+
+(map #(f/parse my-formatter % ) tweet-date)
+
+(f/parse custom-formatter "12/14/2018")
+(def formatter (f/formatters :date))
+(f/parse formatter index-date)
+
+(def tweet-joda-simple (map #(.format(java.text.SimpleDateFormat. "MM/dd/yyyy") %) tweet-date-complex))
+
+
+(def index-joda-simple (map #(get % :date) indexes))
+
+(def match-tweets ())
 
 
 
