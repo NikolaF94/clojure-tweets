@@ -8,16 +8,19 @@
   (require [clj-time.format :as f])
   (:require [cheshire.core :refer :all])
   (require [clj-time.coerce :as c])
+  (require [markdown-to-hiccup.core])
+
+
   (:import [java.util Calendar Date GregorianCalendar TimeZone]
            [java.sql Timestamp]
            (java.time.format DateTimeFormatter)
            (java.time ZonedDateTime)))
 
 ;Loads and returns tweets. Parameters are Twitter Account, Keyword and Start and End Dates, Max number of Tweets
-(defn gettweets [] (into [] (for [x (Main/main "realdonaldtrump" "China" "2015-12-20" "2019-01-01" 5)]
+(defn gettweets [username, keyword, startdate, enddate, maxtweets] (into [] (for [x (Main/main username keyword startdate enddate maxtweets )]
                               (into {} (for [y (bean x)]
                                          y)))))
-
+"realdonaldtrump" "China" "2015-12-20" "2019-01-01" 5
 
 
 
@@ -48,7 +51,7 @@
 ;(def index-date-complex (apply f/parse custom-formatter (map #(get % :date) indeksi) ) )
 
 (def tweet-date-complex (map #(get % :date) tvitovi))
-;(def joda-complex (map #(c/from-date %) tweet-date-complex))
+;;(def joda-complex (map #(c/from-date %) tweet-date-complex))
 
 (def custom-formatter (f/formatter "MM/dd/yyyy"))
 
@@ -68,10 +71,25 @@
 
 (def tweet-joda-simple (map #(.format(java.text.SimpleDateFormat. "MM/dd/yyyy") %) tweet-date-complex))
 
+;; METRIKE:
 
 (def index-joda-simple (map #(get % :date) indexes))
 
-(def match-tweets ())
+(def return-open-seq (map #(get % :open) indexes))
+
+(def return-close-seq (map #(get % :adjclose) indexes))
+
+(def return-close (first (map #(read-string %)return-close-seq) ))
+
+(def return-open (first (map #(read-string %)return-open-seq) ))
+
+(def index-change-daily-number  (- return-close return-open))
+
+(def index-change-daily (true? (neg? index-change-daily-number)) )
+
+
+
+
 
 
 
