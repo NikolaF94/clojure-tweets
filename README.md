@@ -28,7 +28,7 @@ Histogram and Colored Scatterplot are showing how many times did the index chang
 The sentiment analysis in the application marks the tweet text as positive, neutral or negative (1, 2 o 3 respectively).
 Finally, the line plot provides you with the index timeseries together with sentiment marks (1, 2 or 3) added on dates tweets were posted. Here you can track if the index changed and what was the tweet and its sentiment that day.
 
-Next step of this application will be adding an option to generate the PDF report on the analysis that the user gets and to add multiple indexes for the analysis to be more precise. Stay tuned :)
+Next step of this application will be adding an option to generate the PDF report on the analysis that the user gets and to add multiple indexes for the analysis to be more precise (charts, tables and create report buttons). Stay tuned :)
 
 
 
