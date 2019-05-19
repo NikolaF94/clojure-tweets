@@ -38,7 +38,7 @@ Next step of this application will be adding an option to generate the PDF repor
 <li>[metasoarous/oz "1.6.0-alpha2"]</li>
 <li>[enlive "1.1.6"]</li>
 <li>[markdown-to-hiccup "0.6.2"]</li>
-<li>[me.jhenrique/getoldtweets "1.1.0"]<li>
+<li>[me.jhenrique/getoldtweets "1.1.0"]</li>
 <li>[damionjunk/nlp "0.3.0"]</li>
 <li>[com.novemberain/monger "3.1.0"]</li>
 <li>[clj-time "0.15.0"]</li>
