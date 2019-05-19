@@ -1,6 +1,12 @@
 # Tweets Analysis
 
-A Clojure Project designed to help in data science analysis of Tweets and Financial market indexes
+A Clojure Project designed to help in data science analysis of Tweets and Financial market indexes.
+
+Sentiment analysis library is provided by https://github.com/damionjunk/damionjunk.nlp that uses Stanford's CoreNLP.
+
+Loading tweets older than 7 days is possible thanks to the https://github.com/Jefferson-Henrique/GetOldTweets-java library.
+
+Charts and visualizations made possible thanks to https://github.com/metasoarous/oz.
 
 ## Usage
 
