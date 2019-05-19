@@ -1,4 +1,4 @@
-# clojure-tweets
+# Tweets Analysis
 
 A Clojure Project designed to help in data science analysis of Tweets and Financial market indexes
 
@@ -32,10 +32,22 @@ Finally, the line plot provides you with the index timeseries together with sent
 
 Next step of this application will be adding an option to generate the PDF report on the analysis that the user gets and to add multiple indexes for the analysis to be more precise (charts, tables and create report buttons). Stay tuned :)
 
-
-
-
-
+## References:
+<ul>[stylefy "1.12.0"]</ul>
+<ul>[metasoarous/oz "1.6.0-alpha2"]</ul>
+<ul>[enlive "1.1.6"]</ul>
+<ul>[markdown-to-hiccup "0.6.2"]</ul>
+<ul>[me.jhenrique/getoldtweets "1.1.0"]<ul>
+<ul>[damionjunk/nlp "0.3.0"]</ul>
+<ul>[com.novemberain/monger "3.1.0"]</ul>
+<ul>[clj-time "0.15.0"]</ul>
+<ul>[cheshire "5.8.1"]</ul>
+<ul>[ring "1.7.1"]</ul>
+<ul>[compojure "1.6.1"]</ul>
+<ul>[hiccup "2.0.0-alpha2"]</ul>
+<ul>[selmer "1.12.6"]</ul>
+  
+  
 
 ## License
 
