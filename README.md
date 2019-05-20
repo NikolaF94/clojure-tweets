@@ -14,7 +14,7 @@ In order to use this application, you have to:
 <ul>
 1. Have Leiningen installed (for Windows users: http://leiningen-win-installer.djpowell.net/)</ul>
 <ul>2. Have mongoDB installed https://www.mongodb.com/download-center/community </ul>
-<ul>3. Download the desired index/historical value datasheet from https://finance.yahoo.com as CSV. For the example bellow, use https://finance.yahoo.com/quote/%5EGSPC?p=^GSPC
+<ul>3. Download the desired index/historical value datasheet from https://finance.yahoo.com as CSV. For the example bellow, use https://finance.yahoo.com/quote/%5EGSPC?p=^GSPC .
 Edit the CSV file: date format needs to be in MM/dd/yyyy. Change all column names to be lowercase (date instead of Date, adjclose instead of Adjusted close etc.). 
 Upload the CSV file to mongoDB and create data base SP (in the given example we evaluate Standard&Poor 500 index), and data collection Spider (S&P500 indexed ETFs nickname on WallStreet). In order to use other indexes, make sure you change the database and data collection name in .core namespace - <b>get-index</b> function. </ul>
 
